@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dgm-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: darn_good_mends
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d darn_good_mends']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: dgm-backend
+    environment:
+      NODE_ENV: development
+      PORT: 8787
+      FRONTEND_ORIGIN: http://localhost:5178
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/darn_good_mends
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - '8787:8787'
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: dgm-frontend
+    environment:
+      VITE_API_URL: http://localhost:8787/api
+    depends_on:
+      - backend
+    ports:
+      - '5178:5178'
+
+volumes:
+  postgres-data:
