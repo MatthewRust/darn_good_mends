@@ -1,7 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Kalam:wght@300;400;700&display=swap");
 @import "tailwindcss";
 
+:root {
+  --thread-red: #7a0000;
+  --thread-red-bright: #b80000;
+  --linen: #f4ead8;
+  --paper: #fffaf0;
+  --ink: #2b1d10;
+}
+
+html,
 body {
   margin: 0;
-  font-family: "Segoe UI", "Inter", sans-serif;
-  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  min-height: 100%;
+  color: var(--ink);
+  font-family: "Kalam", "Segoe UI", "Inter", sans-serif;
+  background-color: var(--linen);
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.32  0 0 0 0 0.22  0 0 0 0 0.12  0 0 0 0.18 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+    repeating-linear-gradient(0deg, rgba(120, 90, 55, 0.07) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(120, 90, 55, 0.07) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(0deg, rgba(255, 245, 220, 0.4) 0 2px, transparent 2px 4px);
+  background-size: 220px 220px, 3px 3px, 3px 3px, 4px 4px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at top, rgba(255, 250, 240, 0.3), transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(80, 50, 25, 0.12), transparent 70%);
+  z-index: 0;
+}
+
+.font-hand {
+  font-family: "Caveat", "Kalam", cursive;
+}
+
+.font-body {
+  font-family: "Kalam", "Segoe UI", sans-serif;
 }
