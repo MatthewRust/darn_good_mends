@@ -1,16 +1,18 @@
+import { Link } from 'react-router-dom'
 import { AppRoutes } from './routes/AppRoutes'
+import dgmLogo from './assets/home/dgm logo.png'
 
-function BookAMendButton({ className = '' }: { className?: string }) {
+function DashedButton({ label, to, className = '' }: { label: string; to: string; className?: string }) {
   return (
-    <button
-      type="button"
+    <Link
+      to={to}
       className={`relative font-hand tracking-wide text-[#7a0000] transition-transform hover:-translate-y-0.5 ${className}`}
-      style={{ fontSize: '1.35rem' }}
+      style={{ fontSize: '1.35rem', textDecoration: 'none' }}
     >
-      <span className="relative z-10 inline-block bg-[#fffaf0] px-4 py-1">BOOK A MEND</span>
+      <span className="relative z-10 inline-block bg-[#fffaf0] px-4 py-1">{label}</span>
       <svg
         className="pointer-events-none absolute"
-        style={{ top: 2, left: 2, right: 2, bottom: 2, width: 'calc(100% - 4px)', height: 'calc(100% - 4px)' }}
+        style={{ top: 2, left: 2, right: 2, bottom: 2, width: 'calc(100% - 4px)', height: 'calc(100% - 4px)', overflow: 'visible' }}
         preserveAspectRatio="none"
         aria-hidden="true"
       >
@@ -26,32 +28,22 @@ function BookAMendButton({ className = '' }: { className?: string }) {
           strokeLinecap="round"
         />
       </svg>
-    </button>
+    </Link>
   )
+}
+
+function BookAMendButton({ className = '' }: { className?: string }) {
+  return <DashedButton label="BOOK A MEND" to="/book" className={className} />
+}
+
+function ViewGalleryButton({ className = '' }: { className?: string }) {
+  return <DashedButton label="GALLERY" to="/gallery" className={className} />
 }
 
 function SquirrelBadge() {
   return (
-    <div className="relative flex h-14 w-14 items-center justify-center">
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 56 56" aria-hidden="true">
-        <circle
-          cx="28"
-          cy="28"
-          r="25"
-          fill="#fffaf0"
-          stroke="#7a0000"
-          strokeWidth="1.4"
-          strokeDasharray="5 3"
-        />
-      </svg>
-      <span
-        className="font-hand relative leading-none text-[#7a0000]"
-        style={{ fontSize: '0.85rem', textAlign: 'center' }}
-      >
-        SQUIR
-        <br />
-        REL
-      </span>
+    <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-[#7a0000]/40 bg-[#fffaf0]">
+      <img src={dgmLogo} alt="Darn Good Mends logo" className="h-full w-full object-cover" draggable={false} />
     </div>
   )
 }
@@ -62,7 +54,10 @@ function App() {
       <header className="relative">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <SquirrelBadge />
-          <BookAMendButton />
+          <div className="flex items-center gap-3">
+            <ViewGalleryButton />
+            <BookAMendButton />
+          </div>
         </div>
         <svg
           className="pointer-events-none absolute bottom-0 left-0 h-[3px] w-full"
@@ -87,4 +82,4 @@ function App() {
 }
 
 export default App
-export { BookAMendButton, SquirrelBadge }
+export { BookAMendButton, ViewGalleryButton, SquirrelBadge }

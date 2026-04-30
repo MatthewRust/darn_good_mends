@@ -1,11 +1,14 @@
-import StitchedLogo from '../components/StitchedLogo.tsx'
 import StitchedFrame from '../components/StitchedFrame'
 import TapToMend from '../components/TapToMend'
 import { BookAMendButton } from '../App'
-import inside1 from '../assets/inside1.jpeg'
-import inside2 from '../assets/inside2.jpeg'
-import outside from '../assets/outside.jpeg'
-import squirel from '../assets/squirel.png'
+import dgmLogo from '../assets/home/dgm logo.png'
+import inside1 from '../assets/home/inside1.jpeg'
+import inside2 from '../assets/home/inside2.jpeg'
+import outside from '../assets/home/outside.jpeg'
+import squirel from '../assets/home/squirel.png'
+import r1 from '../assets/home/r1.jpeg'
+import r2 from '../assets/home/r2.jpeg'
+import r3 from '../assets/home/r3.jpeg'
 
 function HandArrow({ className = '', flip = false }: { className?: string; flip?: boolean }) {
   return (
@@ -35,7 +38,7 @@ function HandArrow({ className = '', flip = false }: { className?: string; flip?
   )
 }
 
-function DashedCircle({ children, size = 110 }: { children: React.ReactNode; size?: number }) {
+function LogoCircle({ size = 110 }: { size?: number }) {
   return (
     <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" aria-hidden="true">
@@ -50,7 +53,12 @@ function DashedCircle({ children, size = 110 }: { children: React.ReactNode; siz
           opacity="0.85"
         />
       </svg>
-      {children}
+      <img
+        src={dgmLogo}
+        alt="Darn Good Mends logo"
+        className="h-[82%] w-[82%] rounded-full object-cover"
+        draggable={false}
+      />
     </div>
   )
 }
@@ -58,39 +66,53 @@ function DashedCircle({ children, size = 110 }: { children: React.ReactNode; siz
 export function HomePage() {
   return (
     <main className="relative mx-auto max-w-6xl px-6 pt-8 pb-24 sm:px-10">
-      {/* Section 1 — studio portrait + logo block (Plan 1 top) */}
+      {/* Section 1 — studio portrait pile + logo block */}
       <section className="mt-4 grid grid-cols-1 items-center gap-10 md:grid-cols-2">
-        <div className="flex justify-center">
-          <div className="relative">
-            <StitchedFrame variant="photo" tilt={-3}>
-              <img
-                src={inside1}
-                alt="In the studio"
-                className="block h-[280px] w-[220px] object-cover"
-                draggable={false}
-              />
-            </StitchedFrame>
-            <div className="absolute -right-28 top-6 hidden items-center gap-1 sm:flex">
-              <HandArrow className="h-12 w-20" flip />
-              <span className="font-hand text-[#7a0000]" style={{ fontSize: '1.4rem' }}>
-                me in the studio
-              </span>
+        <div className="flex flex-col items-center">
+          {/* Photo pile — 4 overlapping tilted frames */}
+          <div className="relative" style={{ width: 240, height: 300 }}>
+            {/* r1 — back */}
+            <div className="absolute" style={{ top: 22, left: 8, zIndex: 1 }}>
+              <StitchedFrame variant="photo" tilt={-10}>
+                <img src={r1} alt="Studio photo" className="block h-[220px] w-[170px] object-cover" draggable={false} />
+              </StitchedFrame>
             </div>
+            {/* r2 */}
+            <div className="absolute" style={{ top: 14, left: 18, zIndex: 2 }}>
+              <StitchedFrame variant="photo" tilt={6}>
+                <img src={r2} alt="Studio photo" className="block h-[220px] w-[170px] object-cover" draggable={false} />
+              </StitchedFrame>
+            </div>
+            {/* r3 */}
+            <div className="absolute" style={{ top: 6, left: 12, zIndex: 3 }}>
+              <StitchedFrame variant="photo" tilt={-4}>
+                <img src={r3} alt="Studio photo" className="block h-[220px] w-[170px] object-cover" draggable={false} />
+              </StitchedFrame>
+            </div>
+            {/* inside1 — front */}
+            <div className="absolute" style={{ top: 0, left: 22, zIndex: 4 }}>
+              <StitchedFrame variant="photo" tilt={2}>
+                <img src={inside1} alt="Me in the studio" className="block h-[220px] w-[170px] object-cover" draggable={false} />
+              </StitchedFrame>
+            </div>
+          </div>
+          {/* Label below the pile */}
+          <div className="mt-5 hidden sm:flex items-center gap-2">
+            <HandArrow className="h-10 w-16" flip />
+            <span className="font-hand text-[#7a0000]" style={{ fontSize: '1.3rem' }}>
+              me in the studio
+            </span>
           </div>
         </div>
 
         <div className="flex flex-col items-center text-center">
-          <DashedCircle size={120}>
-            <span
-              className="font-hand text-[#7a0000] leading-none"
-              style={{ fontSize: '1rem', textAlign: 'center' }}
-            >
-              squi
-              <br />
-              rrel
-            </span>
-          </DashedCircle>
-          <StitchedLogo className="mx-auto mt-6 block w-[min(80vw,520px)]" />
+          <LogoCircle size={120} />
+          <h1
+            className="font-hand mx-auto mt-6 text-[#7a0000]"
+            style={{ fontSize: 'clamp(2.4rem, 8vw, 4.6rem)', lineHeight: 0.95 }}
+          >
+            darn good mends
+          </h1>
           <p
             className="font-hand mt-4 text-[#7a0000]"
             style={{ fontSize: '1.6rem', lineHeight: 1.15 }}
