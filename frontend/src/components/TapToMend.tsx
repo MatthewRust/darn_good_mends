@@ -41,7 +41,7 @@ export default function TapToMend({ tilt = 0, className = '' }: TapToMendProps) 
           onKeyDown={onKey}
           className="relative h-[260px] w-[200px] cursor-pointer select-none overflow-hidden bg-white outline-none focus-visible:ring-2 focus-visible:ring-[#7a0000]"
         >
-          <AnimatePresence mode="wait" initial={false}>
+          <AnimatePresence mode="sync" initial={false}>
             <motion.img
               key={index}
               src={FRAMES[index]}
