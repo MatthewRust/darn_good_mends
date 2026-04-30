@@ -42,9 +42,11 @@ function ViewGalleryButton({ className = '' }: { className?: string }) {
 
 function SquirrelBadge() {
   return (
-    <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-[#7a0000]/40 bg-[#fffaf0]">
-      <img src={dgmLogo} alt="Darn Good Mends logo" className="h-full w-full object-cover" draggable={false} />
-    </div>
+    <Link to="/" aria-label="Go to home page">
+      <div className="flex h-[168px] w-[168px] items-center justify-center overflow-hidden rounded-full border border-[#7a0000]/40 bg-[#fffaf0] transition-transform hover:scale-105">
+        <img src={dgmLogo} alt="Darn Good Mends logo" className="h-full w-full object-cover" draggable={false} />
+      </div>
+    </Link>
   )
 }
 
