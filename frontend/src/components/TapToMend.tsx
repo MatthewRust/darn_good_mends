@@ -1,11 +1,11 @@
 import { useState, type KeyboardEvent } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import StitchedFrame from './StitchedFrame'
-import tap1 from '../assets/tap-to-mend/tap1.png'
-import tap2 from '../assets/tap-to-mend/tap2.png'
-import tap3 from '../assets/tap-to-mend/tap3.png'
-import tap4 from '../assets/tap-to-mend/tap4.png'
-import tap5 from '../assets/tap-to-mend/tap5.png'
+import tap1 from '../assets/transitions/tap-to-mend/tap1.png'
+import tap2 from '../assets/transitions/tap-to-mend/tap2.png'
+import tap3 from '../assets/transitions/tap-to-mend/tap3.png'
+import tap4 from '../assets/transitions/tap-to-mend/tap4.png'
+import tap5 from '../assets/transitions/tap-to-mend/tap5.png'
 
 const FRAMES = [tap1, tap2, tap3, tap4, tap5]
 

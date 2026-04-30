@@ -38,7 +38,7 @@ export default function StitchedFrame({
         {children}
         <svg
           className="pointer-events-none absolute"
-          style={{ top: 4, left: 4, right: 4, bottom: 4, width: 'calc(100% - 8px)', height: 'calc(100% - 8px)' }}
+          style={{ top: 4, left: 4, right: 4, bottom: 4, width: 'calc(100% - 8px)', height: 'calc(100% - 8px)', overflow: 'visible' }}
           preserveAspectRatio="none"
           aria-hidden="true"
         >
