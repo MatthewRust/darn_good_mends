@@ -5,3 +5,4 @@ backend/dist
 *.log
 .env
 backend/.env
+claude/.
