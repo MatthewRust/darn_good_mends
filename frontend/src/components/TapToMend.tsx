@@ -1,6 +1,7 @@
 import { useState, type KeyboardEvent } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import StitchedFrame from './StitchedFrame'
+import { EASE } from '../lib/motion'
 import tap1 from '../assets/transitions/tap-to-mend/tap1.png'
 import tap2 from '../assets/transitions/tap-to-mend/tap2.png'
 import tap3 from '../assets/transitions/tap-to-mend/tap3.png'
@@ -17,6 +18,7 @@ type TapToMendProps = {
 export default function TapToMend({ tilt = 0, className = '' }: TapToMendProps) {
   const [index, setIndex] = useState(0)
   const [touched, setTouched] = useState(false)
+  const reduced = useReducedMotion()
 
   const advance = () => {
     setTouched(true)
@@ -32,30 +34,35 @@ export default function TapToMend({ tilt = 0, className = '' }: TapToMendProps) 
 
   return (
     <div className={`flex flex-col items-center gap-2 ${className}`}>
-      <StitchedFrame variant="photo" tilt={tilt}>
-        <div
-          role="button"
-          tabIndex={0}
-          aria-label="Tap to advance the mending"
-          onClick={advance}
-          onKeyDown={onKey}
-          className="relative h-[260px] w-[200px] cursor-pointer select-none overflow-hidden bg-white outline-none focus-visible:ring-2 focus-visible:ring-[#7a0000]"
-        >
-          <AnimatePresence mode="sync" initial={false}>
-            <motion.img
-              key={index}
-              src={FRAMES[index]}
-              alt={`Mending step ${index + 1} of ${FRAMES.length}`}
-              className="absolute inset-0 h-full w-full object-contain"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.18, ease: 'easeOut' }}
-              draggable={false}
-            />
-          </AnimatePresence>
-        </div>
-      </StitchedFrame>
+      <motion.div
+        whileTap={reduced ? undefined : { scale: 0.97 }}
+        transition={{ duration: 0.12, ease: EASE }}
+      >
+        <StitchedFrame variant="photo" tilt={tilt}>
+          <div
+            role="button"
+            tabIndex={0}
+            aria-label="Tap to advance the mending"
+            onClick={advance}
+            onKeyDown={onKey}
+            className="relative h-[260px] w-[200px] cursor-pointer select-none overflow-hidden bg-white outline-none focus-visible:ring-2 focus-visible:ring-[#7a0000]"
+          >
+            <AnimatePresence mode="sync" initial={false}>
+              <motion.img
+                key={index}
+                src={FRAMES[index]}
+                alt={`Mending step ${index + 1} of ${FRAMES.length}`}
+                className="absolute inset-0 h-full w-full object-contain"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.18, ease: 'easeOut' }}
+                draggable={false}
+              />
+            </AnimatePresence>
+          </div>
+        </StitchedFrame>
+      </motion.div>
       <motion.span
         className="font-hand text-[#7a0000]"
         style={{ fontSize: '1.25rem' }}
