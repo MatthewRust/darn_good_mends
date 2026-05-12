@@ -131,28 +131,49 @@ export function HomePage() {
           </motion.div>
         </div>
 
-        {/* Outside-door portrait with "me in the studio" caption */}
-        <div className="mb-14 flex flex-wrap items-center justify-center gap-4">
-          <FadeUp delay={0.2} className="flex flex-col items-center gap-1 order-2 sm:order-1">
-            <HandArrow className="h-10 w-16" />
-            <span className="font-hand text-[#7a0000]" style={{ fontSize: '1.3rem' }}>
-              me in the studio
-            </span>
-          </FadeUp>
-          <FadeUp className="order-1 sm:order-2">
+        {/* Outside-door portrait with ribbon label */}
+        <div className="mb-14 flex justify-center">
+          <FadeUp>
             <StitchedFrame variant="photo" tilt={2}>
-              <img
-                src={outside}
-                alt="Me in the studio"
-                className="block h-[300px] w-[260px] object-cover"
-                draggable={false}
-              />
+              <div className="relative block h-[300px] w-[260px]">
+                <img
+                  src={outside}
+                  alt="Me in the studio"
+                  className="block h-full w-full object-cover"
+                  draggable={false}
+                />
+                {/* Red ribbon banner overlapping top-left corner */}
+                <div
+                  className="absolute left-0 top-6 bg-[#7a0000] px-4 py-1.5 shadow-md"
+                  style={{ transform: 'rotate(-2deg)', transformOrigin: 'left center' }}
+                >
+                  <span
+                    className="font-hand text-white"
+                    style={{ fontSize: '1.05rem', letterSpacing: '0.02em' }}
+                  >
+                    me in the studio
+                  </span>
+                </div>
+              </div>
             </StitchedFrame>
           </FadeUp>
         </div>
 
-        {/* Group of 2 — r4 and r5 */}
-        <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+        {/* "every garment" copy block */}
+        <FadeUp className="flex justify-center">
+          <StitchedFrame variant="paper" tilt={1} className="max-w-3xl">
+            <p
+              className="font-body text-center text-[#3b2a18]"
+              style={{ fontSize: '1rem', lineHeight: 1.5 }}
+            >
+              every garment carries a story. each mend i make is a small act of care, a stitch
+              between what was and what could be again.
+            </p>
+          </StitchedFrame>
+        </FadeUp>
+
+        {/* r4 and r5 side by side beneath the copy block */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-8 sm:gap-12">
           <FadeUp>
             <StitchedFrame variant="photo" tilt={-5}>
               <img
@@ -174,17 +195,6 @@ export function HomePage() {
             </StitchedFrame>
           </FadeUp>
         </div>
-        <FadeUp className="mt-10 flex justify-center">
-          <StitchedFrame variant="paper" tilt={1} className="max-w-3xl">
-            <p
-              className="font-body text-center text-[#3b2a18]"
-              style={{ fontSize: '1rem', lineHeight: 1.5 }}
-            >
-              every garment carries a story. each mend i make is a small act of care, a stitch
-              between what was and what could be again.
-            </p>
-          </StitchedFrame>
-        </FadeUp>
       </section>
 
       {/* Section 3 — centered full-width copy + squirrel */}
