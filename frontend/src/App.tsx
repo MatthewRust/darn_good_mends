@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { AppRoutes } from './routes/AppRoutes'
 import dgmLogo from './assets/home/dgm logo.png'
+import bookAMendBadge from './assets/home/book_a_mend_badge.png'
 
 function DashedButton({ label, to, className = '' }: { label: string; to: string; className?: string }) {
   return (
@@ -33,7 +34,20 @@ function DashedButton({ label, to, className = '' }: { label: string; to: string
 }
 
 function BookAMendButton({ className = '' }: { className?: string }) {
-  return <DashedButton label="BOOK A MEND" to="/book" className={className} />
+  return (
+    <Link
+      to="/book"
+      aria-label="Book a mend"
+      className={`inline-block transition-transform hover:-translate-y-0.5 ${className}`}
+    >
+      <img
+        src={bookAMendBadge}
+        alt="Book a mend"
+        className="block h-full w-auto select-none"
+        draggable={false}
+      />
+    </Link>
+  )
 }
 
 function ViewGalleryButton({ className = '' }: { className?: string }) {
@@ -42,10 +56,13 @@ function ViewGalleryButton({ className = '' }: { className?: string }) {
 
 function SquirrelBadge() {
   return (
-    <Link to="/" aria-label="Go to home page">
-      <div className="flex h-[168px] w-[168px] items-center justify-center overflow-hidden rounded-full border border-[#7a0000]/40 bg-[#fffaf0] transition-transform hover:scale-105">
-        <img src={dgmLogo} alt="Darn Good Mends logo" className="h-full w-full object-cover" draggable={false} />
-      </div>
+    <Link to="/" aria-label="Go to home page" className="mt-4 inline-block transition-transform hover:scale-105">
+      <img
+        src={dgmLogo}
+        alt="Darn Good Mends logo"
+        className="block h-[168px] w-[168px] object-contain"
+        draggable={false}
+      />
     </Link>
   )
 }
@@ -58,7 +75,7 @@ function App() {
           <SquirrelBadge />
           <div className="flex items-center gap-3">
             <ViewGalleryButton />
-            <BookAMendButton />
+            <BookAMendButton className="h-12" />
           </div>
         </div>
         <svg
