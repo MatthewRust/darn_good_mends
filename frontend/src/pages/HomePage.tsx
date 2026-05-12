@@ -15,34 +15,6 @@ import r5 from '../assets/home/r5.jpeg'
 import r6 from '../assets/home/r6.jpeg'
 import n1 from '../assets/home/n1.png'
 
-function HandArrow({ className = '', flip = false }: { className?: string; flip?: boolean }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 90 60"
-      style={{ transform: flip ? 'scaleX(-1)' : undefined }}
-      aria-hidden="true"
-    >
-      <path
-        d="M5 50 C 25 45, 35 25, 60 18"
-        fill="none"
-        stroke="#7a0000"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeDasharray="5 3"
-      />
-      <path
-        d="M58 12 L 64 18 L 56 24"
-        fill="none"
-        stroke="#7a0000"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
 export function HomePage() {
   const reduced = useReducedMotion()
 
