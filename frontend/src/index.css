@@ -17,8 +17,10 @@ body {
   font-family: "Kalam", "Segoe UI", "Inter", sans-serif;
   background-color: var(--linen);
   background-image: url("./assets/home/background.PNG");
-  background-repeat: repeat;
-  background-size: 500px auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 
