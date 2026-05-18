@@ -47,7 +47,7 @@ function App() {
               <h1
                 className="font-hand text-white"
                 style={{
-                  fontSize: 'clamp(1.6rem, 4.5vw, 3rem)',
+                  fontSize: 'clamp(2.4rem, 6.75vw, 4.5rem)',
                   lineHeight: 1,
                   margin: 0,
                   whiteSpace: 'nowrap',
