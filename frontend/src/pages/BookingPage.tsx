@@ -1,9 +1,13 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import StitchedFrame from '../components/StitchedFrame'
+import FadeUp from '../components/motion/FadeUp'
+import { EASE } from '../lib/motion'
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
 type ItemData = {
+  _id: string
   garmentType: string
   material: string
   materialOther: string
@@ -23,8 +27,10 @@ type FormData = {
   items: ItemData[]
 }
 
+let _nextItemId = 0
 function blankItem(): ItemData {
   return {
+    _id: `item-${++_nextItemId}`,
     garmentType: '',
     material: '',
     materialOther: '',
@@ -299,6 +305,19 @@ function ItemBlock({
 export function BookingPage() {
   const [form, setForm] = useState<FormData>(blankForm)
   const [submitted, setSubmitted] = useState(false)
+  const reduced = useReducedMotion()
+
+  const itemMotion = reduced
+    ? {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+      }
+    : {
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -20 },
+      }
 
   function setField<K extends keyof FormData>(key: K, value: FormData[K]) {
     setForm((f) => ({ ...f, [key]: value }))
@@ -330,14 +349,18 @@ export function BookingPage() {
   if (submitted) {
     return (
       <main className="relative mx-auto max-w-2xl px-6 pt-12 pb-24 sm:px-10 flex flex-col items-center gap-8">
-        <StitchedFrame variant="paper" className="w-full text-center">
-          <p className="font-hand text-[#7a0000]" style={{ fontSize: '1.8rem', lineHeight: 1.2 }}>
-            thank you!
-          </p>
-          <p className="font-body text-[#3b2a18] mt-3" style={{ fontSize: '1rem', lineHeight: 1.5 }}>
-            i've received your enquiry and will aim to get back to you within 1 working day.
-          </p>
-        </StitchedFrame>
+        <FadeUp mode="mount" className="w-full">
+          <StitchedFrame variant="paper" className="w-full text-center">
+            <FadeUp mode="mount" delay={0.3}>
+              <p className="font-hand text-[#7a0000]" style={{ fontSize: '1.8rem', lineHeight: 1.2 }}>
+                thank you!
+              </p>
+            </FadeUp>
+            <p className="font-body text-[#3b2a18] mt-3" style={{ fontSize: '1rem', lineHeight: 1.5 }}>
+              i've received your enquiry and will aim to get back to you within 1 working day.
+            </p>
+          </StitchedFrame>
+        </FadeUp>
       </main>
     )
   }
@@ -345,25 +368,28 @@ export function BookingPage() {
   return (
     <main className="relative mx-auto max-w-2xl px-6 pt-8 pb-24 sm:px-10">
       {/* Intro */}
-      <StitchedFrame variant="paper" className="mb-8">
-        <p className="font-body text-[#3b2a18]" style={{ fontSize: '1rem', lineHeight: 1.6 }}>
-          <span className="font-hand text-[#7a0000]" style={{ fontSize: '1.3rem' }}>
-            please fill in the form below
-          </span>{' '}
-          if you would like an estimate on the cost and timeline for a garment repair. i aim to
-          provide a response to your enquiry within{' '}
-          <strong>1 working day</strong> of you submitting the form.
-        </p>
-        <p className="font-body text-[#3b2a18] mt-3" style={{ fontSize: '1rem', lineHeight: 1.6 }}>
-          my rates are <strong>£20/hour</strong> including tracked postage both ways (for mends
-          outwith E10 or N16). sashiko and visible mending is charged on top of this at a rate of{' '}
-          <strong>£30/hour</strong>.
-        </p>
-      </StitchedFrame>
+      <FadeUp className="mb-8" mode="mount">
+        <StitchedFrame variant="paper">
+          <p className="font-body text-[#3b2a18]" style={{ fontSize: '1rem', lineHeight: 1.6 }}>
+            <span className="font-hand text-[#7a0000]" style={{ fontSize: '1.3rem' }}>
+              please fill in the form below
+            </span>{' '}
+            if you would like an estimate on the cost and timeline for a garment repair. i aim to
+            provide a response to your enquiry within{' '}
+            <strong>1 working day</strong> of you submitting the form.
+          </p>
+          <p className="font-body text-[#3b2a18] mt-3" style={{ fontSize: '1rem', lineHeight: 1.6 }}>
+            my rates are <strong>£20/hour</strong> including tracked postage both ways (for mends
+            outwith E10 or N16). sashiko and visible mending is charged on top of this at a rate of{' '}
+            <strong>£30/hour</strong>.
+          </p>
+        </StitchedFrame>
+      </FadeUp>
 
       <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6">
         {/* Contact details */}
-        <StitchedFrame variant="paper" className="w-full max-w-2xl">
+        <FadeUp className="w-full max-w-2xl">
+          <StitchedFrame variant="paper">
           <span className="font-hand text-[#7a0000] block mb-4" style={{ fontSize: '1.4rem' }}>
             your details
           </span>
@@ -431,19 +457,30 @@ export function BookingPage() {
               />
             </div>
           </div>
-        </StitchedFrame>
+          </StitchedFrame>
+        </FadeUp>
 
         {/* Item blocks */}
-        {form.items.map((item, i) => (
-          <ItemBlock
-            key={i}
-            index={i}
-            item={item}
-            onChange={(field, value) => setItemField(i, field, value)}
-            onRemove={() => removeItem(i)}
-            canRemove={form.items.length > 1}
-          />
-        ))}
+        <AnimatePresence initial={false}>
+          {form.items.map((item, i) => (
+            <motion.div
+              key={item._id}
+              className="w-full max-w-2xl"
+              initial={itemMotion.initial}
+              animate={itemMotion.animate}
+              exit={itemMotion.exit}
+              transition={{ duration: 0.35, ease: EASE }}
+            >
+              <ItemBlock
+                index={i}
+                item={item}
+                onChange={(field, value) => setItemField(i, field, value)}
+                onRemove={() => removeItem(i)}
+                canRemove={form.items.length > 1}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
 
         {/* Add another item */}
         <button

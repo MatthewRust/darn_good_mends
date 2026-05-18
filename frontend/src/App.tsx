@@ -1,51 +1,34 @@
 import { Link } from 'react-router-dom'
 import { AppRoutes } from './routes/AppRoutes'
 import dgmLogo from './assets/home/dgm logo.png'
+import bookAMendBadge from './assets/home/book_a_mend_badge.png'
 
-function DashedButton({ label, to, className = '' }: { label: string; to: string; className?: string }) {
+function BookAMendButton({ className = '' }: { className?: string }) {
   return (
     <Link
-      to={to}
-      className={`relative font-hand tracking-wide text-[#7a0000] transition-transform hover:-translate-y-0.5 ${className}`}
-      style={{ fontSize: '1.35rem', textDecoration: 'none' }}
+      to="/book"
+      aria-label="Book a mend"
+      className={`inline-block transition-transform hover:-translate-y-0.5 ${className}`}
     >
-      <span className="relative z-10 inline-block bg-[#fffaf0] px-4 py-1">{label}</span>
-      <svg
-        className="pointer-events-none absolute"
-        style={{ top: 2, left: 2, right: 2, bottom: 2, width: 'calc(100% - 4px)', height: 'calc(100% - 4px)', overflow: 'visible' }}
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <rect
-          x="0"
-          y="0"
-          width="100%"
-          height="100%"
-          fill="none"
-          stroke="#7a0000"
-          strokeWidth="1.4"
-          strokeDasharray="5 3"
-          strokeLinecap="round"
-        />
-      </svg>
+      <img
+        src={bookAMendBadge}
+        alt="Book a mend"
+        className="block h-full w-auto select-none"
+        draggable={false}
+      />
     </Link>
   )
 }
 
-function BookAMendButton({ className = '' }: { className?: string }) {
-  return <DashedButton label="BOOK A MEND" to="/book" className={className} />
-}
-
-function ViewGalleryButton({ className = '' }: { className?: string }) {
-  return <DashedButton label="GALLERY" to="/gallery" className={className} />
-}
-
 function SquirrelBadge() {
   return (
-    <Link to="/" aria-label="Go to home page">
-      <div className="flex h-[168px] w-[168px] items-center justify-center overflow-hidden rounded-full border border-[#7a0000]/40 bg-[#fffaf0] transition-transform hover:scale-105">
-        <img src={dgmLogo} alt="Darn Good Mends logo" className="h-full w-full object-cover" draggable={false} />
-      </div>
+    <Link to="/" aria-label="Go to home page" className="mt-4 inline-block transition-transform hover:scale-105">
+      <img
+        src={dgmLogo}
+        alt="Darn Good Mends logo"
+        className="block h-[168px] w-[168px] object-contain"
+        draggable={false}
+      />
     </Link>
   )
 }
@@ -54,29 +37,29 @@ function App() {
   return (
     <div className="relative z-10 min-h-screen">
       <header className="relative">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
           <SquirrelBadge />
-          <div className="flex items-center gap-3">
-            <ViewGalleryButton />
-            <BookAMendButton />
+          <div className="flex flex-1 justify-center">
+            <div
+              className="bg-[#7a0000] px-5 py-2 shadow-md"
+              style={{ transform: 'rotate(-2deg)' }}
+            >
+              <h1
+                className="font-hand text-white"
+                style={{
+                  fontSize: 'clamp(1.6rem, 4.5vw, 3rem)',
+                  lineHeight: 1,
+                  margin: 0,
+                  whiteSpace: 'nowrap',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                darn good mends
+              </h1>
+            </div>
           </div>
+          <BookAMendButton className="h-12" />
         </div>
-        <svg
-          className="pointer-events-none absolute bottom-0 left-0 h-[3px] w-full"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <line
-            x1="0"
-            y1="1.5"
-            x2="100%"
-            y2="1.5"
-            stroke="#7a0000"
-            strokeWidth="1.2"
-            strokeDasharray="6 4"
-            opacity="0.85"
-          />
-        </svg>
       </header>
       <AppRoutes />
     </div>
@@ -84,4 +67,4 @@ function App() {
 }
 
 export default App
-export { BookAMendButton, ViewGalleryButton, SquirrelBadge }
+export { BookAMendButton, SquirrelBadge }

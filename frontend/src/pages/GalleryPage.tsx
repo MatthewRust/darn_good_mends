@@ -1,3 +1,7 @@
+import { motion, useReducedMotion } from 'framer-motion'
+import StaggerContainer from '../components/motion/StaggerContainer'
+import { EASE, makeStaggerItemVariants } from '../lib/motion'
+
 // HEIC files display natively on Apple devices/Safari. For broader browser
 // support, convert gallery images to JPEG.
 const imageModules = import.meta.glob('../assets/gallery/*', { eager: true, query: '?url', import: 'default' }) as Record<
@@ -13,18 +17,26 @@ const TILTS = [-3, 2, -5, 4, -2, 3, -4, 1, 5, -3, 2, -1, 4, -2]
 
 function PolaroidFrame({ src, index }: { src: string; index: number }) {
   const tilt = TILTS[index % TILTS.length]
+  const reduced = useReducedMotion()
+  const itemVariants = makeStaggerItemVariants(reduced)
+  const hover = reduced ? undefined : { scale: 1.04, rotate: tilt + 1 }
+
   return (
-    <div
+    <motion.div
+      variants={itemVariants}
+      whileHover={hover}
+      whileFocus={hover}
+      transition={{ duration: 0.25, ease: EASE }}
+      tabIndex={0}
       style={{
-        transform: `rotate(${tilt}deg)`,
+        rotate: tilt,
         backgroundColor: '#fffaf0',
         padding: '8px 8px 36px 8px',
         boxShadow: '0 6px 18px rgba(80,45,15,0.22), 0 1px 3px rgba(80,45,15,0.14)',
         borderRadius: 2,
         display: 'inline-block',
-        transition: 'transform 0.2s ease',
+        outline: 'none',
       }}
-      className="hover:scale-105"
     >
       <img
         src={src}
@@ -37,7 +49,7 @@ function PolaroidFrame({ src, index }: { src: string; index: number }) {
           objectFit: 'cover',
         }}
       />
-    </div>
+    </motion.div>
   )
 }
 
@@ -51,11 +63,15 @@ export function GalleryPage() {
         the gallery
       </h1>
 
-      <div className="flex flex-wrap justify-center gap-10">
+      <StaggerContainer
+        stagger={0.06}
+        viewportAmount={0.1}
+        className="flex flex-wrap justify-center gap-10"
+      >
         {images.map((src, i) => (
           <PolaroidFrame key={src} src={src} index={i} />
         ))}
-      </div>
+      </StaggerContainer>
 
       {images.length === 0 && (
         <p className="font-body text-center text-[#3b2a18]/60 mt-20" style={{ fontSize: '1rem' }}>
