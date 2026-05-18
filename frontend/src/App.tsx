@@ -26,7 +26,7 @@ function SquirrelBadge() {
       <img
         src={dgmLogo}
         alt="Darn Good Mends logo"
-        className="block h-[168px] w-[168px] object-contain"
+        className="block h-[185px] w-[185px] object-contain"
         draggable={false}
       />
     </Link>
@@ -58,7 +58,7 @@ function App() {
               </h1>
             </div>
           </div>
-          <BookAMendButton className="h-12" />
+          <BookAMendButton className="h-[5.16rem]" />
         </div>
       </header>
       <AppRoutes />

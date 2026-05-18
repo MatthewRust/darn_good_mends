@@ -41,13 +41,13 @@ export function HomePage() {
           <StitchedFrame variant="paper" tilt={-1}>
             <p
               className="font-hand text-center text-[#7a0000]"
-              style={{ fontSize: 'clamp(1.3rem, 2.8vw, 1.8rem)', lineHeight: 1.15 }}
+              style={{ fontSize: 'clamp(1.73rem, 3.73vw, 2.4rem)', lineHeight: 1.15 }}
             >
               breathing new life into old garments
             </p>
             <p
               className="font-body mt-3 text-center text-[#3b2a18]"
-              style={{ fontSize: '1rem', lineHeight: 1.5 }}
+              style={{ fontSize: '1.21rem', lineHeight: 1.5 }}
             >
               bespoke clothes mending &amp; hand embroidery from my studio in east london
             </p>
