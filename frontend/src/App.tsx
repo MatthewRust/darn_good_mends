@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { AppRoutes } from './routes/AppRoutes'
-import StitchedFrame from './components/StitchedFrame'
 import dgmLogo from './assets/home/dgm logo.png'
 import bookAMendBadge from './assets/home/book_a_mend_badge.png'
 
@@ -41,19 +40,23 @@ function App() {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
           <SquirrelBadge />
           <div className="flex flex-1 justify-center">
-            <StitchedFrame variant="paper" tilt={-1}>
+            <div
+              className="bg-[#7a0000] px-5 py-2 shadow-md"
+              style={{ transform: 'rotate(-2deg)' }}
+            >
               <h1
-                className="font-hand text-[#7a0000]"
+                className="font-hand text-white"
                 style={{
                   fontSize: 'clamp(1.6rem, 4.5vw, 3rem)',
                   lineHeight: 1,
                   margin: 0,
                   whiteSpace: 'nowrap',
+                  letterSpacing: '0.02em',
                 }}
               >
                 darn good mends
               </h1>
-            </StitchedFrame>
+            </div>
           </div>
           <BookAMendButton className="h-12" />
         </div>
