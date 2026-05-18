@@ -41,13 +41,13 @@ function App() {
           <SquirrelBadge />
           <div className="flex flex-1 justify-center">
             <div
-              className="bg-[#7a0000] px-5 py-2 shadow-md"
+              className="bg-[#7a0000] px-6 py-3 shadow-md"
               style={{ transform: 'rotate(-2deg)' }}
             >
               <h1
                 className="font-hand text-white"
                 style={{
-                  fontSize: 'clamp(1.6rem, 4.5vw, 3rem)',
+                  fontSize: 'clamp(2rem, 5.5vw, 3.6rem)',
                   lineHeight: 1,
                   margin: 0,
                   whiteSpace: 'nowrap',
@@ -58,7 +58,7 @@ function App() {
               </h1>
             </div>
           </div>
-          <BookAMendButton className="h-12" />
+          <BookAMendButton className="h-16" />
         </div>
       </header>
       <AppRoutes />

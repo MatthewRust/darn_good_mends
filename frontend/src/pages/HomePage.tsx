@@ -35,19 +35,23 @@ export function HomePage() {
   return (
     <main className="relative mx-auto max-w-6xl px-6 pt-8 pb-24 sm:px-10">
 
-      {/* Section 1 — subtitle copy block under the header title */}
-      <section className="mt-4 flex flex-col items-center text-center">
+      {/* Section 1 — subtitle copy blocks under the header title */}
+      <section className="mt-4 flex flex-col items-center gap-6 text-center">
         <FadeUp mode="mount" className="w-full max-w-2xl">
           <StitchedFrame variant="paper" tilt={-1}>
             <p
               className="font-hand text-center text-[#7a0000]"
-              style={{ fontSize: 'clamp(1.3rem, 2.8vw, 1.8rem)', lineHeight: 1.15 }}
+              style={{ fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', lineHeight: 1.15 }}
             >
               breathing new life into old garments
             </p>
+          </StitchedFrame>
+        </FadeUp>
+        <FadeUp mode="mount" delay={0.12} className="w-full max-w-2xl">
+          <StitchedFrame variant="paper" tilt={1.5}>
             <p
-              className="font-body mt-3 text-center text-[#3b2a18]"
-              style={{ fontSize: '1rem', lineHeight: 1.5 }}
+              className="font-body text-center text-[#3b2a18]"
+              style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)', lineHeight: 1.4 }}
             >
               bespoke clothes mending &amp; hand embroidery from my studio in east london
             </p>
