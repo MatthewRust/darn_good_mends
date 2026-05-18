@@ -6,7 +6,6 @@ import { BookAMendButton } from '../App'
 import { EASE } from '../lib/motion'
 import inside1 from '../assets/home/inside1.jpeg'
 import outside from '../assets/home/outside.jpeg'
-import squirel from '../assets/home/squirel.png'
 import r1 from '../assets/home/r1.jpeg'
 import r2 from '../assets/home/r2.jpeg'
 import r3 from '../assets/home/r3.jpeg'
@@ -36,41 +35,33 @@ export function HomePage() {
   return (
     <main className="relative mx-auto max-w-6xl px-6 pt-8 pb-24 sm:px-10">
 
-      {/* Section 1 — full-width centered banner */}
+      {/* Section 1 — subtitle copy block under the header title */}
       <section className="mt-4 flex flex-col items-center text-center">
-        <FadeUp mode="mount">
-          <h1
-            className="font-hand text-[#7a0000]"
-            style={{ fontSize: 'clamp(2.4rem, 10vw, 5.6rem)', lineHeight: 0.95 }}
-          >
-            darn good mends
-          </h1>
-        </FadeUp>
-        <FadeUp mode="mount" delay={0.12}>
-          <p
-            className="font-hand mt-4 text-[#7a0000]"
-            style={{ fontSize: 'clamp(1.4rem, 3.2vw, 2rem)', lineHeight: 1.15 }}
-          >
-            breathing new life into old garments
-          </p>
-        </FadeUp>
-        <FadeUp mode="mount" delay={0.24}>
-          <p
-            className="font-body mt-3 max-w-2xl text-[#3b2a18]"
-            style={{ fontSize: '1rem', lineHeight: 1.5 }}
-          >
-            bespoke clothes mending &amp; hand embroidery from my studio in east london
-          </p>
+        <FadeUp mode="mount" className="w-full max-w-2xl">
+          <StitchedFrame variant="paper" tilt={-1}>
+            <p
+              className="font-hand text-center text-[#7a0000]"
+              style={{ fontSize: 'clamp(1.3rem, 2.8vw, 1.8rem)', lineHeight: 1.15 }}
+            >
+              breathing new life into old garments
+            </p>
+            <p
+              className="font-body mt-3 text-center text-[#3b2a18]"
+              style={{ fontSize: '1rem', lineHeight: 1.5 }}
+            >
+              bespoke clothes mending &amp; hand embroidery from my studio in east london
+            </p>
+          </StitchedFrame>
         </FadeUp>
       </section>
 
-      {/* Section 2 — photo pile + outside-door portrait, then group of 2 */}
+      {/* Section 2 — photo pile (spread wider), then r4 + outside + r5 in a single row */}
       <section className="mt-20">
-        {/* Photo pile */}
+        {/* Photo pile of 4, spread 15% wider */}
         <div className="mb-14 flex flex-col items-center">
           <motion.div
             className="relative"
-            style={{ width: 510, height: 300 }}
+            style={{ width: 535, height: 300 }}
             variants={pileContainer}
             initial="hidden"
             whileInView="visible"
@@ -83,19 +74,19 @@ export function HomePage() {
               </StitchedFrame>
             </motion.div>
             {/* r2 */}
-            <motion.div className="absolute" style={{ top: 12, left: 105, zIndex: 2 }} variants={pileItem}>
+            <motion.div className="absolute" style={{ top: 12, left: 121, zIndex: 2 }} variants={pileItem}>
               <StitchedFrame variant="photo" tilt={6}>
                 <img src={r2} alt="Studio photo" className="block h-[220px] w-[170px] object-cover" draggable={false} />
               </StitchedFrame>
             </motion.div>
             {/* r3 */}
-            <motion.div className="absolute" style={{ top: 24, left: 210, zIndex: 3 }} variants={pileItem}>
+            <motion.div className="absolute" style={{ top: 24, left: 242, zIndex: 3 }} variants={pileItem}>
               <StitchedFrame variant="photo" tilt={-4}>
                 <img src={r3} alt="Studio photo" className="block h-[220px] w-[170px] object-cover" draggable={false} />
               </StitchedFrame>
             </motion.div>
             {/* inside1 — front */}
-            <motion.div className="absolute" style={{ top: 0, left: 315, zIndex: 4 }} variants={pileItem}>
+            <motion.div className="absolute" style={{ top: 0, left: 363, zIndex: 4 }} variants={pileItem}>
               <StitchedFrame variant="photo" tilt={2}>
                 <img src={inside1} alt="Studio interior" className="block h-[220px] w-[170px] object-cover" draggable={false} />
               </StitchedFrame>
@@ -103,11 +94,21 @@ export function HomePage() {
           </motion.div>
         </div>
 
-        {/* Outside-door portrait with ribbon label */}
-        <div className="mb-14 flex justify-center">
+        {/* r4 + outside-door portrait + r5 in a single horizontal row */}
+        <div className="mb-14 flex flex-wrap items-center justify-center gap-8 sm:gap-12">
           <FadeUp>
+            <StitchedFrame variant="photo" tilt={-5}>
+              <img
+                src={r4}
+                alt="Mended garment detail"
+                className="block h-[260px] w-[200px] object-cover"
+                draggable={false}
+              />
+            </StitchedFrame>
+          </FadeUp>
+          <FadeUp delay={0.12}>
             <StitchedFrame variant="photo" tilt={2}>
-              <div className="relative block h-[300px] w-[260px]">
+              <div className="relative block h-[260px] w-[220px]">
                 <img
                   src={outside}
                   alt="Me in the studio"
@@ -129,6 +130,16 @@ export function HomePage() {
               </div>
             </StitchedFrame>
           </FadeUp>
+          <FadeUp delay={0.24}>
+            <StitchedFrame variant="photo" tilt={-3}>
+              <img
+                src={r5}
+                alt="Embroidery close-up"
+                className="block h-[260px] w-[200px] object-cover"
+                draggable={false}
+              />
+            </StitchedFrame>
+          </FadeUp>
         </div>
 
         {/* "every garment" copy block */}
@@ -143,33 +154,9 @@ export function HomePage() {
             </p>
           </StitchedFrame>
         </FadeUp>
-
-        {/* r4 and r5 side by side beneath the copy block */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-8 sm:gap-12">
-          <FadeUp>
-            <StitchedFrame variant="photo" tilt={-5}>
-              <img
-                src={r4}
-                alt="Mended garment detail"
-                className="block h-[200px] w-[200px] object-cover"
-                draggable={false}
-              />
-            </StitchedFrame>
-          </FadeUp>
-          <FadeUp delay={0.12}>
-            <StitchedFrame variant="photo" tilt={-3}>
-              <img
-                src={r5}
-                alt="Embroidery close-up"
-                className="block h-[200px] w-[200px] object-cover"
-                draggable={false}
-              />
-            </StitchedFrame>
-          </FadeUp>
-        </div>
       </section>
 
-      {/* Section 3 — centered full-width copy + squirrel */}
+      {/* Section 3 — centered full-width copy */}
       <section className="mt-24 flex flex-col items-center gap-8">
         <FadeUp className="w-full max-w-3xl">
           <StitchedFrame variant="paper" tilt={-2}>
@@ -193,14 +180,6 @@ export function HomePage() {
             </p>
           </StitchedFrame>
         </FadeUp>
-        <FadeUp className="mt-4 flex justify-center" delay={0.24}>
-          <img
-            src={squirel}
-            alt="Embroidered squirrel motif on clothes"
-            className="block h-auto w-full max-w-xs object-contain"
-            draggable={false}
-          />
-        </FadeUp>
       </section>
 
       {/* Section 4 — CTA + still deciding text */}
@@ -208,17 +187,19 @@ export function HomePage() {
         <FadeUp>
           <BookAMendButton className="h-20" />
         </FadeUp>
-        <FadeUp delay={0.12}>
-          <p
-            className="font-body max-w-xl text-center text-[#3b2a18]"
-            style={{ fontSize: '0.95rem', lineHeight: 1.5 }}
-          >
-            <span className="font-hand text-[#7a0000]" style={{ fontSize: '1.2rem' }}>
-              still deciding —
-            </span>{' '}
-            have a look at the gallery above, or send a photo of the piece you're thinking about.
-            i'll let you know if it's a good fit.
-          </p>
+        <FadeUp delay={0.12} className="w-full max-w-xl">
+          <StitchedFrame variant="paper" tilt={1.5}>
+            <p
+              className="font-body text-center text-[#3b2a18]"
+              style={{ fontSize: '0.95rem', lineHeight: 1.5 }}
+            >
+              <span className="font-hand text-[#7a0000]" style={{ fontSize: '1.2rem' }}>
+                still deciding —
+              </span>{' '}
+              have a look at the gallery above, or send a photo of the piece you're thinking about.
+              i'll let you know if it's a good fit.
+            </p>
+          </StitchedFrame>
         </FadeUp>
       </section>
 
