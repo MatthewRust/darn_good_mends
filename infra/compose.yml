@@ -21,6 +21,8 @@ services:
       context: ../backend
       dockerfile: Dockerfile
     container_name: dgm-backend
+    env_file:
+      - ../backend/.env
     environment:
       NODE_ENV: development
       PORT: 8787

@@ -1,8 +1,10 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { isAxiosError } from 'axios'
 import StitchedFrame from '../components/StitchedFrame'
 import FadeUp from '../components/motion/FadeUp'
 import { EASE } from '../lib/motion'
+import { api } from '../services/api'
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -305,6 +307,8 @@ function ItemBlock({
 export function BookingPage() {
   const [form, setForm] = useState<FormData>(blankForm)
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const reduced = useReducedMotion()
 
   const itemMotion = reduced
@@ -340,10 +344,43 @@ export function BookingPage() {
     setForm((f) => ({ ...f, items: f.items.filter((_, i) => i !== index) }))
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    console.log('Booking enquiry:', form)
-    setSubmitted(true)
+    if (submitting) return
+    setSubmitError(null)
+    setSubmitting(true)
+
+    const payload = {
+      firstName: form.firstName,
+      lastName: form.lastName,
+      email: form.email,
+      address: form.address,
+      urgent: form.urgent,
+      items: form.items.map(({ photo: _photo, _id: _omit, ...rest }) => rest),
+    }
+
+    const fd = new window.FormData()
+    fd.append('payload', JSON.stringify(payload))
+    form.items.forEach((item, i) => {
+      if (item.photo) fd.append(`photo_${i}`, item.photo, item.photo.name)
+    })
+
+    try {
+      await api.post('/bookings', fd)
+      setSubmitted(true)
+    } catch (err) {
+      let message = "Something went wrong sending your enquiry. Please try again, or email rosie directly."
+      if (isAxiosError(err)) {
+        if (err.response?.status === 400) {
+          message = 'Some fields look incomplete — please review and try again.'
+        } else if (err.response?.status === 502) {
+          message = "We couldn't reach the mail service. Please try again in a moment."
+        }
+      }
+      setSubmitError(message)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -520,13 +557,26 @@ export function BookingPage() {
           </svg>
         </button>
 
+        {/* Error */}
+        {submitError && (
+          <FadeUp mode="mount" className="w-full max-w-2xl">
+            <StitchedFrame variant="paper" className="w-full text-center">
+              <p className="font-body text-[#a83829]" style={{ fontSize: '1rem', lineHeight: 1.5 }}>
+                {submitError}
+              </p>
+            </StitchedFrame>
+          </FadeUp>
+        )}
+
         {/* Submit */}
         <button
           type="submit"
-          className="relative font-hand tracking-wide text-[#fffaf0] bg-[#a83829] transition-transform hover:-translate-y-0.5 px-8 py-2"
+          disabled={submitting}
+          aria-busy={submitting}
+          className="relative font-hand tracking-wide text-[#fffaf0] bg-[#a83829] transition-transform hover:-translate-y-0.5 px-8 py-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
           style={{ fontSize: '1.35rem', borderRadius: 2 }}
         >
-          submit
+          {submitting ? 'sending…' : 'submit'}
         </button>
       </form>
     </main>

@@ -3,6 +3,7 @@ import express from 'express'
 import type { NextFunction, Request, Response } from 'express'
 import { env } from './config/env.js'
 import { logger } from './config/logger.js'
+import { bookingsRouter } from './routes/bookings.js'
 import { healthRouter } from './routes/health.js'
 
 export const app = express()
@@ -15,6 +16,7 @@ app.use(cors({ origin: env.FRONTEND_ORIGIN }))
 app.use(express.json())
 
 app.use('/api', healthRouter)
+app.use('/api', bookingsRouter)
 
 app.use((_req, res) => {
   res.status(404).json({ error: 'Not found' })
