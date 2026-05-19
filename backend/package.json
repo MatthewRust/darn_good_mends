@@ -10,6 +10,7 @@
     "test": "vitest run",
     "db:migrate:create": "node-pg-migrate -m migrations create",
     "db:migrate:up": "dotenv -e .env -- node-pg-migrate -m migrations up",
+    "db:migrate:up:prod": "node-pg-migrate -m migrations up",
     "db:migrate:down": "dotenv -e .env -- node-pg-migrate -m migrations down",
     "db:reset": "npm run db:migrate:down; npm run db:migrate:up"
   },
