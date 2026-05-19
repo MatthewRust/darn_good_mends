@@ -229,7 +229,7 @@ export default function StitchedLogo({ className, onComplete }: StitchedLogoProp
                 d={d}
                 variants={letterVariants}
                 fill="none"
-                stroke="#7a0000"
+                stroke="#a83829"
                 strokeWidth="0.36"
                 strokeLinecap="round"
                 strokeLinejoin="round"

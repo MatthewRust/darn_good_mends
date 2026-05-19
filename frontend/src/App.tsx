@@ -41,8 +41,8 @@ function App() {
           <SquirrelBadge />
           <div className="flex flex-1 justify-center">
             <div
-              className="bg-[#7a0000] px-5 py-2 shadow-md"
-              style={{ transform: 'rotate(-2deg)' }}
+              className="bg-[#a83829] px-5 py-2 shadow-md"
+              style={{ transform: 'rotate(-2deg)', marginTop: '138px' }}
             >
               <h1
                 className="font-hand text-white"

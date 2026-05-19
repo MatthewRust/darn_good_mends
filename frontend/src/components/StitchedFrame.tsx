@@ -48,7 +48,7 @@ export default function StitchedFrame({
             width="100%"
             height="100%"
             fill="none"
-            stroke="#7a0000"
+            stroke="#a83829"
             strokeWidth="1.4"
             strokeDasharray="6 4"
             strokeLinecap="round"

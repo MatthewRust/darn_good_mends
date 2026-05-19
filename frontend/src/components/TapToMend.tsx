@@ -17,11 +17,9 @@ type TapToMendProps = {
 
 export default function TapToMend({ tilt = 0, className = '' }: TapToMendProps) {
   const [index, setIndex] = useState(0)
-  const [touched, setTouched] = useState(false)
   const reduced = useReducedMotion()
 
   const advance = () => {
-    setTouched(true)
     setIndex((i) => (i + 1) % FRAMES.length)
   }
 
@@ -45,7 +43,7 @@ export default function TapToMend({ tilt = 0, className = '' }: TapToMendProps) 
             aria-label="Tap to advance the mending"
             onClick={advance}
             onKeyDown={onKey}
-            className="relative h-[260px] w-[200px] cursor-pointer select-none overflow-hidden bg-white outline-none focus-visible:ring-2 focus-visible:ring-[#7a0000]"
+            className="relative h-[260px] w-[200px] cursor-pointer select-none overflow-hidden bg-white outline-none focus-visible:ring-2 focus-visible:ring-[#a83829]"
           >
             <AnimatePresence mode="sync" initial={false}>
               <motion.img
@@ -63,14 +61,6 @@ export default function TapToMend({ tilt = 0, className = '' }: TapToMendProps) 
           </div>
         </StitchedFrame>
       </motion.div>
-      <motion.span
-        className="font-hand text-[#7a0000]"
-        style={{ fontSize: '1.25rem' }}
-        animate={{ opacity: touched ? 0 : 1 }}
-        transition={{ duration: 0.4 }}
-      >
-        click to mend
-      </motion.span>
     </div>
   )
 }

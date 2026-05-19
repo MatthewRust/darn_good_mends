@@ -57,7 +57,7 @@ export function GalleryPage() {
   return (
     <main className="relative mx-auto max-w-6xl px-6 pt-8 pb-24 sm:px-10">
       <h1
-        className="font-hand text-center text-[#7a0000] mb-12"
+        className="font-hand text-center text-[#a83829] mb-12"
         style={{ fontSize: 'clamp(2rem, 6vw, 3.5rem)', lineHeight: 1 }}
       >
         the gallery

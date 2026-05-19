@@ -57,7 +57,7 @@ function blankForm(): FormData {
 
 function Label({ children }: { children: React.ReactNode }) {
   return (
-    <span className="font-hand text-[#7a0000] block mb-1" style={{ fontSize: '1.2rem' }}>
+    <span className="font-hand text-[#a83829] block mb-1" style={{ fontSize: '1.2rem' }}>
       {children}
     </span>
   )
@@ -80,7 +80,7 @@ function TextInput({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
-      className="w-full border border-[#7a0000]/30 bg-[#fffaf0] px-3 py-2 font-body text-[#3b2a18] outline-none focus:border-[#7a0000]/70"
+      className="w-full border border-[#a83829]/30 bg-[#fffaf0] px-3 py-2 font-body text-[#3b2a18] outline-none focus:border-[#a83829]/70"
       style={{ fontSize: '0.95rem', borderRadius: 2 }}
     />
   )
@@ -103,7 +103,7 @@ function TextArea({
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
       rows={rows}
-      className="w-full border border-[#7a0000]/30 bg-[#fffaf0] px-3 py-2 font-body text-[#3b2a18] outline-none focus:border-[#7a0000]/70 resize-none"
+      className="w-full border border-[#a83829]/30 bg-[#fffaf0] px-3 py-2 font-body text-[#3b2a18] outline-none focus:border-[#a83829]/70 resize-none"
       style={{ fontSize: '0.95rem', borderRadius: 2 }}
     />
   )
@@ -130,7 +130,7 @@ function RadioGroup({
             value={opt.value}
             checked={value === opt.value}
             onChange={() => onChange(opt.value)}
-            className="mt-1 accent-[#7a0000] shrink-0"
+            className="mt-1 accent-[#a83829] shrink-0"
           />
           <span className="font-body text-[#3b2a18]" style={{ fontSize: '0.95rem', lineHeight: 1.4 }}>
             {opt.label}
@@ -161,14 +161,14 @@ function ItemBlock({
   return (
     <StitchedFrame variant="paper" className="w-full max-w-2xl">
       <div className="flex items-center justify-between mb-4">
-        <span className="font-hand text-[#7a0000]" style={{ fontSize: '1.4rem' }}>
+        <span className="font-hand text-[#a83829]" style={{ fontSize: '1.4rem' }}>
           {index === 0 ? 'item details' : `item ${index + 1}`}
         </span>
         {canRemove && (
           <button
             type="button"
             onClick={onRemove}
-            className="font-body text-[#7a0000]/60 hover:text-[#7a0000] transition-colors"
+            className="font-body text-[#a83829]/60 hover:text-[#a83829] transition-colors"
             style={{ fontSize: '0.85rem' }}
           >
             remove
@@ -352,7 +352,7 @@ export function BookingPage() {
         <FadeUp mode="mount" className="w-full">
           <StitchedFrame variant="paper" className="w-full text-center">
             <FadeUp mode="mount" delay={0.3}>
-              <p className="font-hand text-[#7a0000]" style={{ fontSize: '1.8rem', lineHeight: 1.2 }}>
+              <p className="font-hand text-[#a83829]" style={{ fontSize: '1.8rem', lineHeight: 1.2 }}>
                 thank you!
               </p>
             </FadeUp>
@@ -371,7 +371,7 @@ export function BookingPage() {
       <FadeUp className="mb-8" mode="mount">
         <StitchedFrame variant="paper">
           <p className="font-body text-[#3b2a18]" style={{ fontSize: '1rem', lineHeight: 1.6 }}>
-            <span className="font-hand text-[#7a0000]" style={{ fontSize: '1.3rem' }}>
+            <span className="font-hand text-[#a83829]" style={{ fontSize: '1.3rem' }}>
               please fill in the form below
             </span>{' '}
             if you would like an estimate on the cost and timeline for a garment repair. i aim to
@@ -390,7 +390,7 @@ export function BookingPage() {
         {/* Contact details */}
         <FadeUp className="w-full max-w-2xl">
           <StitchedFrame variant="paper">
-          <span className="font-hand text-[#7a0000] block mb-4" style={{ fontSize: '1.4rem' }}>
+          <span className="font-hand text-[#a83829] block mb-4" style={{ fontSize: '1.4rem' }}>
             your details
           </span>
 
@@ -486,7 +486,7 @@ export function BookingPage() {
         <button
           type="button"
           onClick={addItem}
-          className="relative font-hand tracking-wide text-[#7a0000] transition-transform hover:-translate-y-0.5"
+          className="relative font-hand tracking-wide text-[#a83829] transition-transform hover:-translate-y-0.5"
           style={{ fontSize: '1.2rem' }}
         >
           <span className="relative z-10 inline-block bg-[#fffaf0] px-4 py-1">
@@ -512,7 +512,7 @@ export function BookingPage() {
               width="100%"
               height="100%"
               fill="none"
-              stroke="#7a0000"
+              stroke="#a83829"
               strokeWidth="1.4"
               strokeDasharray="5 3"
               strokeLinecap="round"
@@ -523,7 +523,7 @@ export function BookingPage() {
         {/* Submit */}
         <button
           type="submit"
-          className="relative font-hand tracking-wide text-[#fffaf0] bg-[#7a0000] transition-transform hover:-translate-y-0.5 px-8 py-2"
+          className="relative font-hand tracking-wide text-[#fffaf0] bg-[#a83829] transition-transform hover:-translate-y-0.5 px-8 py-2"
           style={{ fontSize: '1.35rem', borderRadius: 2 }}
         >
           submit
