@@ -396,6 +396,12 @@ export function BookingPage() {
             <p className="font-body text-[#3b2a18] mt-3" style={{ fontSize: '1rem', lineHeight: 1.5 }}>
               i've received your enquiry and will aim to get back to you within 1 working day.
             </p>
+            <p
+              className="font-body mt-5 border-t border-[#a83829]/20 pt-4 text-[#3b2a18]/75"
+              style={{ fontSize: '0.9rem', lineHeight: 1.5 }}
+            >
+              please check your junk mail too, as the receipt may have ended up there.
+            </p>
           </StitchedFrame>
         </FadeUp>
       </main>

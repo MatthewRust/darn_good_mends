@@ -15,6 +15,7 @@ body {
   min-height: 100%;
   color: var(--ink);
   font-family: "Kalam", "Segoe UI", "Inter", sans-serif;
+  zoom: 1.25;
   background-color: var(--linen);
   background-image: url("./assets/home/background2.png");
   background-repeat: no-repeat;
