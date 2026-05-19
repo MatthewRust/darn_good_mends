@@ -16,9 +16,9 @@ body {
   color: var(--ink);
   font-family: "Kalam", "Segoe UI", "Inter", sans-serif;
   background-color: var(--linen);
-  background-image: url("./assets/home/background.PNG");
+  background-image: url("./assets/home/background2.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% auto;
   background-position: center top;
 }
 
