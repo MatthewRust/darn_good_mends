@@ -394,7 +394,7 @@ export function BookingPage() {
               </p>
             </FadeUp>
             <p className="font-body text-[#3b2a18] mt-3" style={{ fontSize: '1rem', lineHeight: 1.5 }}>
-              i've received your enquiry and will aim to get back to you within 1 working day.
+              i've received your enquiry and will aim to get back to you within one working day.
             </p>
             <p
               className="font-body mt-5 border-t border-[#a83829]/20 pt-4 text-[#3b2a18]/75"
@@ -419,12 +419,12 @@ export function BookingPage() {
             </span>{' '}
             if you would like an estimate on the cost and timeline for a garment repair. i aim to
             provide a response to your enquiry within{' '}
-            <strong>1 working day</strong> of you submitting the form.
+            <strong>one working day</strong> of you submitting the form.
           </p>
           <p className="font-body text-[#3b2a18] mt-3" style={{ fontSize: '1rem', lineHeight: 1.6 }}>
-            my rates are <strong>£20/hour</strong> including tracked postage both ways (for mends
-            outwith E10 or N16). sashiko and visible mending is charged on top of this at a rate of{' '}
-            <strong>£30/hour</strong>.
+            my rates are <strong>£20/hour</strong>, plus tracked postage costs. for mends within
+            E10 or N16 i offer a free collection and drop off service. sashiko and visible mending
+            is charged at a rate of <strong>£30/hour</strong>.
           </p>
         </StitchedFrame>
       </FadeUp>
@@ -485,7 +485,7 @@ export function BookingPage() {
               <Label>is this repair urgent?</Label>
               <p className="font-body text-[#3b2a18]/70 mb-2" style={{ fontSize: '0.85rem', lineHeight: 1.4 }}>
                 if posted, the shortest timeframe is 5 working days from confirmation and postage of
-                item. if collecting, i can complete the mend within 1 working day (£15 surcharge for
+                item. if collecting, i can complete the mend within one working day (£15 surcharge for
                 rush).
               </p>
               <RadioGroup

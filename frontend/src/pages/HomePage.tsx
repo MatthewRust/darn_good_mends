@@ -110,7 +110,7 @@ export function HomePage() {
           <StitchedFrame variant="paper" tilt={-1}>
             <p
               className="font-hand text-center text-[#a83829]"
-              style={{ fontSize: 'clamp(1.73rem, 3.73vw, 2.4rem)', lineHeight: 1.15 }}
+              style={{ fontSize: 'clamp(1.52rem, 3.28vw, 2.1rem)', lineHeight: 1.15 }}
             >
               breathing new life into old garments
             </p>
@@ -164,8 +164,8 @@ export function HomePage() {
               className="font-body text-center text-[#3b2a18]"
               style={{ fontSize: '1rem', lineHeight: 1.5 }}
             >
-              every garment carries a story. each mend i make is a small act of care, a stitch
-              between what was and what could be again.
+              hole in your jumper? rip in your jeans? moths nibbled at your favourite
+              t-shirt? i'm here to help!
             </p>
           </StitchedFrame>
         </FadeUp>
@@ -193,8 +193,8 @@ export function HomePage() {
               className="font-body text-center text-[#3b2a18]"
               style={{ fontSize: '1rem', lineHeight: 1.5 }}
             >
-              collection in person or post — turnaround is usually one to two weeks depending on
-              the piece.
+              mending your clothes allows you to carry a little piece of art with you
+              wherever you go; as well as reducing textile waste and overconsumption.
             </p>
           </StitchedFrame>
         </FadeUp>
@@ -212,10 +212,10 @@ export function HomePage() {
               style={{ fontSize: '0.95rem', lineHeight: 1.5 }}
             >
               <span className="font-hand text-[#a83829]" style={{ fontSize: '1.2rem' }}>
-                still deciding —
+                still deciding?
               </span>{' '}
-              have a look at the gallery above, or send a photo of the piece you're thinking about.
-              i'll let you know if it's a good fit.
+              take a look at some examples of my work below, or get in touch via the form
+              and we can discuss what mend is best for you.
             </p>
           </StitchedFrame>
         </FadeUp>

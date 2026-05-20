@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { AppRoutes } from './routes/AppRoutes'
+import Footer from './components/Footer'
 import dgmLogo from './assets/home/dgm logo.png'
 import bookAMendBadge from './assets/home/book_a_mend_badge.png'
 
@@ -47,7 +48,7 @@ function App() {
               <h1
                 className="font-hand text-white"
                 style={{
-                  fontSize: 'clamp(2.4rem, 6.75vw, 4.5rem)',
+                  fontSize: 'clamp(2.1rem, 5.95vw, 3.95rem)',
                   lineHeight: 1,
                   margin: 0,
                   whiteSpace: 'nowrap',
@@ -62,6 +63,7 @@ function App() {
         </div>
       </header>
       <AppRoutes />
+      <Footer />
     </div>
   )
 }

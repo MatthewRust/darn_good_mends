@@ -1,6 +1,5 @@
 import { useState, type KeyboardEvent } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import StitchedFrame from './StitchedFrame'
 import { EASE } from '../lib/motion'
 import tap1 from '../assets/transitions/tap-to-mend/tap1.png'
 import tap2 from '../assets/transitions/tap-to-mend/tap2.png'
@@ -35,31 +34,30 @@ export default function TapToMend({ tilt = 0, className = '' }: TapToMendProps) 
       <motion.div
         whileTap={reduced ? undefined : { scale: 0.97 }}
         transition={{ duration: 0.12, ease: EASE }}
+        style={{ rotate: tilt }}
       >
-        <StitchedFrame variant="photo" tilt={tilt}>
-          <div
-            role="button"
-            tabIndex={0}
-            aria-label="Tap to advance the mending"
-            onClick={advance}
-            onKeyDown={onKey}
-            className="relative h-[260px] w-[200px] cursor-pointer select-none overflow-hidden bg-white outline-none focus-visible:ring-2 focus-visible:ring-[#a83829]"
-          >
-            <AnimatePresence mode="sync" initial={false}>
-              <motion.img
-                key={index}
-                src={FRAMES[index]}
-                alt={`Mending step ${index + 1} of ${FRAMES.length}`}
-                className="absolute inset-0 h-full w-full object-contain"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.18, ease: 'easeOut' }}
-                draggable={false}
-              />
-            </AnimatePresence>
-          </div>
-        </StitchedFrame>
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="Tap to advance the mending"
+          onClick={advance}
+          onKeyDown={onKey}
+          className="relative h-[260px] w-[200px] cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-[#a83829]"
+        >
+          <AnimatePresence mode="sync" initial={false}>
+            <motion.img
+              key={index}
+              src={FRAMES[index]}
+              alt={`Mending step ${index + 1} of ${FRAMES.length}`}
+              className="absolute inset-0 h-full w-full object-contain"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.18, ease: 'easeOut' }}
+              draggable={false}
+            />
+          </AnimatePresence>
+        </div>
       </motion.div>
     </div>
   )
