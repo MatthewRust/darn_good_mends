@@ -44,8 +44,8 @@ function PolaroidFrame({ src, index }: { src: string; index: number }) {
         draggable={false}
         style={{
           display: 'block',
-          width: 200,
-          height: 200,
+          width: 'clamp(140px, 42vw, 200px)',
+          height: 'clamp(140px, 42vw, 200px)',
           objectFit: 'cover',
         }}
       />
@@ -66,7 +66,7 @@ export function GalleryPage() {
       <StaggerContainer
         stagger={0.06}
         viewportAmount={0.1}
-        className="flex flex-wrap justify-center gap-10"
+        className="flex flex-wrap justify-center gap-6 md:gap-10"
       >
         {images.map((src, i) => (
           <PolaroidFrame key={src} src={src} index={i} />

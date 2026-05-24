@@ -21,13 +21,12 @@ services:
       context: ../backend
       dockerfile: Dockerfile
     container_name: dgm-backend
-    env_file:
-      - ../backend/.env
     environment:
       NODE_ENV: development
       PORT: 8787
       FRONTEND_ORIGIN: http://localhost:5178
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/darn_good_mends
+      
     depends_on:
       postgres:
         condition: service_healthy

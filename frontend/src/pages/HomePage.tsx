@@ -33,6 +33,8 @@ type PhotoPileProps = {
   itemVariants: Variants
 }
 
+const PILE_SCALE = 'clamp(0.55, calc((100vw - 32px) / 500px), 1)'
+
 function PhotoPile({
   photos,
   containerWidth,
@@ -41,33 +43,45 @@ function PhotoPile({
   itemVariants,
 }: PhotoPileProps) {
   return (
-    <motion.div
-      className="relative"
-      style={{ width: containerWidth, height: containerHeight }}
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+    <div
+      style={{
+        width: `calc(${containerWidth}px * ${PILE_SCALE})`,
+        height: `calc(${containerHeight}px * ${PILE_SCALE})`,
+      }}
     >
-      {photos.map((photo) => (
-        <motion.div
-          key={photo.src}
-          className="absolute"
-          style={{ top: photo.top, left: photo.left, zIndex: photo.zIndex }}
-          variants={itemVariants}
-        >
-          <StitchedFrame variant="photo" tilt={photo.tilt}>
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              className="block object-cover"
-              style={{ width: photo.width, height: photo.height }}
-              draggable={false}
-            />
-          </StitchedFrame>
-        </motion.div>
-      ))}
-    </motion.div>
+      <motion.div
+        className="relative"
+        style={{
+          width: containerWidth,
+          height: containerHeight,
+          transform: `scale(${PILE_SCALE})`,
+          transformOrigin: 'top left',
+        }}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        {photos.map((photo) => (
+          <motion.div
+            key={photo.src}
+            className="absolute"
+            style={{ top: photo.top, left: photo.left, zIndex: photo.zIndex }}
+            variants={itemVariants}
+          >
+            <StitchedFrame variant="photo" tilt={photo.tilt}>
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                className="block object-cover"
+                style={{ width: photo.width, height: photo.height }}
+                draggable={false}
+              />
+            </StitchedFrame>
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
   )
 }
 
@@ -88,6 +102,12 @@ export function HomePage() {
         hidden: { opacity: 0, y: -16 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
       }
+
+  const introPhotoPile: PilePhoto[] = [
+    { src: r1, alt: 'Studio photo', top: 20, left: 0, zIndex: 1, tilt: -10, width: 170, height: 220 },
+    { src: inside1, alt: 'Studio interior', top: 0, left: 160, zIndex: 2, tilt: 2, width: 170, height: 220 },
+    { src: r3, alt: 'Studio photo', top: 24, left: 320, zIndex: 3, tilt: -4, width: 170, height: 220 },
+  ]
 
   const firstPhotoPile: PilePhoto[] = [
     { src: r4, alt: 'Mended garment detail', top: 18, left: 0, zIndex: 1, tilt: -8, width: 180, height: 230 },
@@ -125,40 +145,20 @@ export function HomePage() {
       </section>
 
       {/* Section 2 — photo pile (spread wider), then r4 + outside + r5 in a photo pile */}
-      <section className="mt-20">
+      <section className="mt-12 md:mt-20">
         {/* Photo pile of 3, using the 2nd and 4th photos swapped and one removed */}
-        <div className="mb-14 flex flex-col items-center">
-          <motion.div
-            className="relative"
-            style={{ width: 500, height: 300 }}
-            variants={pileContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            {/* r1 — back */}
-            <motion.div className="absolute" style={{ top: 20, left: 0, zIndex: 1 }} variants={pileItem}>
-              <StitchedFrame variant="photo" tilt={-10}>
-                <img src={r1} alt="Studio photo" className="block h-[220px] w-[170px] object-cover" draggable={false} />
-              </StitchedFrame>
-            </motion.div>
-            {/* inside1 — front */}
-            <motion.div className="absolute" style={{ top: 0, left: 160, zIndex: 2 }} variants={pileItem}>
-              <StitchedFrame variant="photo" tilt={2}>
-                <img src={inside1} alt="Studio interior" className="block h-[220px] w-[170px] object-cover" draggable={false} />
-              </StitchedFrame>
-            </motion.div>
-            {/* r3 */}
-            <motion.div className="absolute" style={{ top: 24, left: 320, zIndex: 3 }} variants={pileItem}>
-              <StitchedFrame variant="photo" tilt={-4}>
-                <img src={r3} alt="Studio photo" className="block h-[220px] w-[170px] object-cover" draggable={false} />
-              </StitchedFrame>
-            </motion.div>
-          </motion.div>
+        <div className="mb-10 flex justify-center md:mb-14">
+          <PhotoPile
+            photos={introPhotoPile}
+            containerWidth={500}
+            containerHeight={300}
+            containerVariants={pileContainer}
+            itemVariants={pileItem}
+          />
         </div>
 
         {/* "every garment" copy block */}
-        <FadeUp className="mb-14 flex justify-center">
+        <FadeUp className="mb-10 flex justify-center md:mb-14">
           <StitchedFrame variant="paper" tilt={1} className="max-w-3xl">
             <p
               className="font-body text-center text-[#3b2a18]"
@@ -171,7 +171,7 @@ export function HomePage() {
         </FadeUp>
 
         {/* r4 + outside-door portrait + r5 in a photo pile */}
-        <div className="mb-14 flex justify-center">
+        <div className="mb-10 flex justify-center md:mb-14">
           <FadeUp>
             <PhotoPile
               photos={firstPhotoPile}
@@ -186,7 +186,7 @@ export function HomePage() {
       </section>
 
       {/* Section 3 — centered full-width copy */}
-      <section className="mt-24 flex flex-col items-center gap-8">
+      <section className="mt-16 flex flex-col items-center gap-8 md:mt-24">
         <FadeUp className="w-full max-w-3xl">
           <StitchedFrame variant="paper" tilt={1.5}>
             <p
@@ -201,7 +201,7 @@ export function HomePage() {
       </section>
 
       {/* Section 4 — CTA + still deciding text */}
-      <section className="mt-20 flex flex-col items-center gap-6">
+      <section className="mt-12 flex flex-col items-center gap-6 md:mt-20">
         <FadeUp>
           <BookAMendButton className="h-20" />
         </FadeUp>
@@ -222,7 +222,7 @@ export function HomePage() {
       </section>
 
       {/* Section 4.5 — r6, r7, r8 photo pile */}
-      <section className="mt-20">
+      <section className="mt-12 md:mt-20">
         <div className="flex justify-center">
           <FadeUp>
             <PhotoPile
@@ -237,7 +237,7 @@ export function HomePage() {
       </section>
 
       {/* Section 5 — tap-to-mend interactive */}
-      <section className="mt-20">
+      <section className="mt-12 md:mt-20">
         <div className="flex justify-center">
           <FadeUp>
             <TapToMend tilt={1.5} />

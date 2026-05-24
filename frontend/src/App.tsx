@@ -27,7 +27,7 @@ function SquirrelBadge() {
       <img
         src={dgmLogo}
         alt="Darn Good Mends logo"
-        className="block h-[185px] w-[185px] object-contain"
+        className="block h-[96px] w-[96px] object-contain md:h-[185px] md:w-[185px]"
         draggable={false}
       />
     </Link>
@@ -38,20 +38,22 @@ function App() {
   return (
     <div className="relative z-10 min-h-screen">
       <header className="relative">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
-          <SquirrelBadge />
-          <div className="flex flex-1 justify-center">
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-4 md:flex-row md:items-center md:justify-between md:gap-4">
+          <div className="flex items-center justify-between gap-4 md:contents">
+            <SquirrelBadge />
+            <BookAMendButton className="h-[3.25rem] md:h-[5.16rem] md:order-3" />
+          </div>
+          <div className="flex flex-1 justify-center md:order-2">
             <div
-              className="bg-[#a83829] px-5 py-2 shadow-md"
-              style={{ transform: 'rotate(-2deg)', marginTop: '138px' }}
+              className="bg-[#a83829] px-5 py-2 shadow-md md:mt-[138px]"
+              style={{ transform: 'rotate(-2deg)' }}
             >
               <h1
-                className="font-hand text-white"
+                className="font-hand text-white text-center"
                 style={{
-                  fontSize: 'clamp(2.1rem, 5.95vw, 3.95rem)',
-                  lineHeight: 1,
+                  fontSize: 'clamp(1.7rem, 8vw, 3.95rem)',
+                  lineHeight: 1.05,
                   margin: 0,
-                  whiteSpace: 'nowrap',
                   letterSpacing: '0.02em',
                 }}
               >
@@ -59,7 +61,6 @@ function App() {
               </h1>
             </div>
           </div>
-          <BookAMendButton className="h-[5.16rem]" />
         </div>
       </header>
       <AppRoutes />

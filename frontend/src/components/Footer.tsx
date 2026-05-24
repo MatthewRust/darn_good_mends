@@ -26,7 +26,7 @@ export default function Footer() {
         >
           book a mend
         </Link>
-        <nav className="ml-auto flex items-center gap-5">
+        <nav className="flex w-full items-center gap-5 sm:ml-auto sm:w-auto">
           {SOCIALS.map((social) => (
             <a
               key={social.label}
