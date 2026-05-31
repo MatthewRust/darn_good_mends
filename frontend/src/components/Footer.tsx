@@ -1,45 +1,22 @@
 import { Link } from 'react-router-dom'
-import squirrel from '../assets/home/squirel.png'
-
-const SOCIALS = [
-  { label: 'instagram', href: '#' },
-  { label: 'facebook', href: '#' },
-  { label: 'tiktok', href: '#' },
-]
+import dgmLogo from '../assets/home/dgm logo.png'
+import bookAMendBadge from '../assets/home/book_a_mend_badge.png'
 
 export default function Footer() {
   return (
     <footer className="bg-[#a83829]">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-4 px-6 py-5">
-        <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-[#fffaf0]">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-5 sm:flex-row">
+        <span className="flex shrink-0 items-center justify-center">
           <img
-            src={squirrel}
-            alt="Darn Good Mends squirrel"
-            className="h-11 w-11 object-contain"
+            src={dgmLogo}
+            alt="Darn Good Mends logo"
+            className="h-20 w-auto select-none object-contain"
             draggable={false}
           />
         </span>
-        <Link
-          to="/book"
-          className="font-hand text-[#fffaf0] transition-transform hover:-translate-y-0.5"
-          style={{ fontSize: '1.7rem', lineHeight: 1 }}
-        >
-          book a mend
+        <Link to="/book" aria-label="Book a mend" className="inline-block shrink-0 transition-transform hover:-translate-y-0.5">
+          <img src={bookAMendBadge} alt="Book a mend" className="block h-14 w-auto select-none sm:h-16" draggable={false} />
         </Link>
-        <nav className="flex w-full items-center gap-5 sm:ml-auto sm:w-auto">
-          {SOCIALS.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-hand text-[#fffaf0] transition-transform hover:-translate-y-0.5"
-              style={{ fontSize: '1.25rem', lineHeight: 1 }}
-            >
-              {social.label}
-            </a>
-          ))}
-        </nav>
       </div>
     </footer>
   )

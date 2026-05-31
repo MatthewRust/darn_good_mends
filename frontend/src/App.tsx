@@ -25,8 +25,8 @@ function SquirrelBadge() {
   return (
     <Link to="/" aria-label="Go to home page" className="mt-4 inline-block transition-transform hover:scale-105">
       <img
-        src={dgmLogo}
-        alt="Darn Good Mends logo"
+          src={dgmLogo}
+          alt="Darn Good Mends logo"
         className="block h-[96px] w-[96px] object-contain md:h-[185px] md:w-[185px]"
         draggable={false}
       />
