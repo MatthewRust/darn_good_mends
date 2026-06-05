@@ -18,6 +18,9 @@ export default function Footer() {
           <img src={bookAMendBadge} alt="Book a mend" className="block h-14 w-auto select-none sm:h-16" draggable={false} />
         </Link>
       </div>
+      <div className="mx-auto max-w-6xl px-6 pb-6 text-center">
+        <a href="mailto:hello@darngoodmends.com" className="text-white text-sm hover:underline">hello@darngoodmends.com</a>
+      </div>
     </footer>
   )
 }
